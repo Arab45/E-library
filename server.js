@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectToDB } from "./src/db/index.js";
 import userRoutes from "./src/routes/user.routes.js";
+import { swaggerSpec, swaggerUi } from "./src/config/swagger.js";
 
 dotenv.config();
 
@@ -16,6 +17,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/users", userRoutes);
+
+// Swagger route
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const PORT = process.env.PORT || 5000;
 

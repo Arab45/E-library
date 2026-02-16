@@ -27,7 +27,7 @@ const resetPasswordSuccessTemp = (username, ) => {
       <li>Avoid using the same password across multiple sites</li>
     </ul>
     <p>Thank you for helping us keep your account secure.</p>
-    <p>Best regards,<br>HEALTH ASSURED</p>
+    <p>Best regards,<br>STUDY OYO E-LIBRARY</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>

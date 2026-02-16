@@ -6,7 +6,7 @@ const sendMail = (to, subject, body) => {
         // host: process.env.EMAIL_HOST,
         // port: process.env.EMAIL_PORT,
         // secure: false, // true for port 465, false for other ports
-        // service: process.env.EMAIL_SERVICE,
+        service: process.env.EMAIL_SERVICE,
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
         secure: false, 
