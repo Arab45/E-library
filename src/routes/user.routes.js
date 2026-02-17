@@ -49,7 +49,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /auth/signUp:
+ * /api/users/auth/signUp:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth & Users]
@@ -82,7 +82,7 @@ router.post('/signUp', validateSignUp, validation, userExistence, signUp, sendUs
 
 /**
  * @swagger
- * /auth/signIn:
+ * /api/users/auth/signIn:
  *   post:
  *     summary: Login user
  *     tags: [Auth & Users]
@@ -108,7 +108,7 @@ router.post('/signIn', loginProcess, loginAttempt);
 
 /**
  * @swagger
- * /auth/verifyLogin:
+ * /api/users/auth/verifyLogin:
  *   get:
  *     summary: Verify logged-in user session and send verification email
  *     tags: [Auth & Users]
@@ -121,7 +121,7 @@ router.get('/verifyLogin', verifyLoginUserToken, userSessionEmail);
 
 /**
  * @swagger
- * /auth/logout:
+ * /api/users/auth/logout:
  *   get:
  *     summary: Logout current user
  *     tags: [Auth & Users]
@@ -134,7 +134,7 @@ router.get('/logout', logOut);
 
 /**
  * @swagger
- * /auth/forgetPassword:
+ * /api/users/auth/forgetPassword:
  *   post:
  *     summary: Request password reset email
  *     tags: [Auth & Users]
@@ -157,7 +157,7 @@ router.post('/forgetPassword', forgetPasswordToken, userResetPasswordEmail);
 
 /**
  * @swagger
- * /auth/reset-password/{token}:
+ * /api/users/auth/reset-password/{token}:
  *   get:
  *     summary: Reset user password
  *     tags: [Auth & Users]
