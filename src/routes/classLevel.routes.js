@@ -18,35 +18,6 @@ const router = express.Router();
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     ClassLevel:
- *       type: object
- *       required:
- *         - code
- *         - name
- *         - level
- *         - year
- *       properties:
- *         code:
- *           type: string
- *           example: JSS1
- *         name:
- *           type: string
- *           example: Junior Secondary 1
- *         level:
- *           type: string
- *           example: junior
- *         year:
- *           type: number
- *           example: 1
- *         color:
- *           type: string
- *           example: red
- */
-
-/**
- * @swagger
  * /api/class-levels:
  *   post:
  *     summary: Create class level
@@ -59,7 +30,7 @@ const router = express.Router();
  *             $ref: '#/components/schemas/ClassLevel'
  *     responses:
  *       200:
- *         description: Class level created
+ *         description: Class level created successfully
  */
 router.post("/", createClassLevel);
 
@@ -81,7 +52,7 @@ router.get("/getAllClassLevels", getAllClassLevels);
  *   get:
  *     summary: Get single class level
  *     tags: [ClassLevel]
- parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
@@ -89,7 +60,7 @@ router.get("/getAllClassLevels", getAllClassLevels);
  *           type: string
  *     responses:
  *       200:
- *         description: ClassLevel fetched successfully
+ *         description: Class level fetched successfully
  */
 router.get("/getSingleClassLevel/:id", getSingleClassLevel);
 
@@ -99,7 +70,7 @@ router.get("/getSingleClassLevel/:id", getSingleClassLevel);
  *   put:
  *     summary: Update class level
  *     tags: [ClassLevel]
- *  *     parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
@@ -107,7 +78,7 @@ router.get("/getSingleClassLevel/:id", getSingleClassLevel);
  *           type: string
  *     responses:
  *       200:
- *         description: ClassLevel updated successfully
+ *         description: Class level updated successfully
  */
 router.put("/update/:id", updateClassLevel);
 
@@ -117,7 +88,7 @@ router.put("/update/:id", updateClassLevel);
  *   delete:
  *     summary: Delete class level
  *     tags: [ClassLevel]
- * *     parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
@@ -125,7 +96,7 @@ router.put("/update/:id", updateClassLevel);
  *           type: string
  *     responses:
  *       200:
- *         description: ClassLevel deleted successfully
+ *         description: Class level deleted successfully
  */
 router.delete("/delete/:id", deleteClassLevel);
 

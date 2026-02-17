@@ -1,5 +1,4 @@
 import express from "express";
-import * as controller from "../controllers/academicSubject.controller.js";
 import {
   createAcademicSubject,
   deleteAcademicSubject,
@@ -19,30 +18,13 @@ const router = express.Router();
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     AcademicSubject:
- *       type: object
- *       required:
- *         - name
- *         - classLevelId
- *       properties:
- *         name:
- *           type: string
- *           example: Mathematics
- *         description:
- *           type: string
- *         classLevelId:
- *           type: string
- *           example: 65f2ab123456789
- */
-
-/**
- * @swagger
  * /api/academic-subjects:
  *   post:
  *     summary: Create academic subject
  *     tags: [AcademicSubject]
+ *     responses:
+ *       200:
+ *         description: Academic subject created successfully
  */
 router.post("/", createAcademicSubject);
 
@@ -52,9 +34,9 @@ router.post("/", createAcademicSubject);
  *   get:
  *     summary: Get all academic subjects
  *     tags: [AcademicSubject]
- *  *     responses:
+ *     responses:
  *       200:
- *         description: fetch all academic subjects successfully
+ *         description: Fetch all academic subjects successfully
  */
 router.get("/getAll", getAllAcademicSubjects);
 
@@ -64,7 +46,7 @@ router.get("/getAll", getAllAcademicSubjects);
  *   get:
  *     summary: Get single academic subject
  *     tags: [AcademicSubject]
- parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
@@ -72,7 +54,7 @@ router.get("/getAll", getAllAcademicSubjects);
  *           type: string
  *     responses:
  *       200:
- *         description: Academy subject fetched successfully
+ *         description: Academic subject fetched successfully
  */
 router.get("/getSingle/:id", getSingleAcademicSubject);
 
@@ -82,7 +64,7 @@ router.get("/getSingle/:id", getSingleAcademicSubject);
  *   put:
  *     summary: Update academic subject
  *     tags: [AcademicSubject]
- * *     parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
@@ -100,7 +82,7 @@ router.put("/update/:id", updateAcademicSubject);
  *   delete:
  *     summary: Delete academic subject
  *     tags: [AcademicSubject]
- * *     parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
@@ -108,7 +90,7 @@ router.put("/update/:id", updateAcademicSubject);
  *           type: string
  *     responses:
  *       200:
- *         description: Academy subject deleted successfully
+ *         description: Academic subject deleted successfully
  */
 router.delete("/delete/:id", deleteAcademicSubject);
 

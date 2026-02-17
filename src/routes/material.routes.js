@@ -1,5 +1,11 @@
 import express from "express";
-import controller, { createMaterial, deleteMaterial, getAllMaterials, getSingleMaterial, updateMaterial } from "../controller/material.controller.js";
+import {
+  createMaterial,
+  deleteMaterial,
+  getAllMaterials,
+  getSingleMaterial,
+  updateMaterial,
+} from "../controller/material.controller.js";
 
 const router = express.Router();
 
@@ -12,40 +18,11 @@ const router = express.Router();
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Material:
- *       type: object
- *       required:
- *         - title
- *         - category
- *         - subjectId
- *         - classLevelId
- *       properties:
- *         title:
- *           type: string
- *           example: Mathematics Textbook
- *         category:
- *           type: string
- *           example: textbook
- *         subjectId:
- *           type: string
- *         classLevelId:
- *           type: string
- *         file:
- *           type: object
- *           properties:
- *             url:
- *               type: string
- */
-
-/**
- * @swagger
  * /api/materials:
  *   post:
  *     summary: Create material
  *     tags: [Material]
- *  *     responses:
+ *     responses:
  *       200:
  *         description: Successfully created material
  */
@@ -57,7 +34,7 @@ router.post("/", createMaterial);
  *   get:
  *     summary: Get all materials
  *     tags: [Material]
- *  *     responses:
+ *     responses:
  *       200:
  *         description: List of materials
  */
@@ -69,7 +46,7 @@ router.get("/getAllMaterials", getAllMaterials);
  *   get:
  *     summary: Get single material
  *     tags: [Material]
-parameters:
+ *     parameters:
  *       - in: path
  *         name: id
  *         required: true
