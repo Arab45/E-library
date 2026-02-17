@@ -7,6 +7,9 @@ import { swaggerSpec, swaggerUi } from "./src/config/swagger.js";
 import examRoutes from "./src/routes/exam.routes.js";
 import subjectRoutes from "./src/routes/subject.routes.js";
 import paperRoutes from "./src/routes/paper.routes.js ";
+import materialRoutes from "./src/routes/material.routes.js";
+import classLevelRoutes from "./src/routes/classLevel.routes.js";
+import academicSubjectRouter from "./src/routes/academicSubject.routes.js";
 
 dotenv.config();
 
@@ -25,6 +28,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/exams", examRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/papers", paperRoutes);
+app.use("/api/materials", materialRoutes);
+app.use("/api/class-levels", classLevelRoutes);
+app.use("/api/academic-subjects", academicSubjectRouter);
 
 // Swagger route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
