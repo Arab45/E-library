@@ -71,11 +71,11 @@ const examSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // automatically adds createdAt & updatedAt
+    timestamps: true, 
   }
 );
 
-examSchema.pre("validate", function (next) {
+examSchema.pre("validate", async function () {
   // generate slug ONLY when creating new exam
   if (this.isNew && !this.slug) {
     const base = this.fullName || this.name;
@@ -85,7 +85,6 @@ examSchema.pre("validate", function (next) {
     }
     this.slug = generatedSlug;
   }
-  next();
 });
 
 

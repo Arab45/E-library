@@ -55,12 +55,11 @@ const subjectSchema = new mongoose.Schema(
 );
 
 
-subjectSchema.pre("validate", function (next) {
+subjectSchema.pre("validate", async function () {
   // only generate when creating new document
   if (this.isNew && !this.slug) {
     this.slug = slug(this.name, { lower: true });
   }
-  next();
 });
 
 
