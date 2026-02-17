@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slug from "slug";
 
 const subjectSchema = new mongoose.Schema(
   {
@@ -10,10 +11,9 @@ const subjectSchema = new mongoose.Schema(
 
     slug: {
       type: String,
-      required: true,
+      unique: true,
       lowercase: true,
       trim: true,
-      unique: true,
     },
 
     examBodyId: {
@@ -24,18 +24,9 @@ const subjectSchema = new mongoose.Schema(
     },
 
     examBody: {
-      name: {
-        type: String,
-        required: true,
-      },
-      fullName: {
-        type: String,
-        required: true,
-      },
-      slug: {
-        type: String,
-        required: true,
-      },
+      name: { type: String, required: true },
+      fullName: { type: String, required: true },
+      slug: { type: String, required: true },
     },
 
     papersCount: {
@@ -60,7 +51,25 @@ const subjectSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
+
+
+// subjectSchema.pre("validate", function (next) {
+//   if (!this.slug) {
+//     this.slug = slug(this.name, { lower: true });
+//   }
+//   next();
+// });  
+
+subjectSchema.pre("validate", function (next) {
+  // only generate when creating new document
+  if (this.isNew && !this.slug) {
+    this.slug = slug(this.name, { lower: true });
+  }
+  next();
+});
+
+
 
 export const Subject = mongoose.model("Subject", subjectSchema);

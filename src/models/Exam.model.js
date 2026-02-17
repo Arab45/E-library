@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slug from "slug"
 
 const examSchema = new mongoose.Schema(
   {
@@ -73,5 +74,20 @@ const examSchema = new mongoose.Schema(
     timestamps: true, // automatically adds createdAt & updatedAt
   }
 );
+
+examSchema.pre("validate", function (next) {
+  // generate slug ONLY when creating new exam
+  if (this.isNew && !this.slug) {
+    const base = this.fullName || this.name;
+    const generatedSlug = slug(base || "", { lower: true });
+    if (!generatedSlug) {
+      return next(new Error("Invalid exam name for slug generation"));
+    }
+    this.slug = generatedSlug;
+  }
+  next();
+});
+
+
 
 export const Exam = mongoose.model("Exam", examSchema);

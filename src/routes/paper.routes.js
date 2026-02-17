@@ -87,7 +87,7 @@ router.get("/get-single/:id", getSinglePaper);
  *       200:
  *         description: Paper updated successfully
  */
-router.patch("/update/:id", updatePaper);
+router.put("/update/:id", updatePaper);
 
 /**
  * @swagger

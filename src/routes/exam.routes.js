@@ -32,7 +32,6 @@ const router = express.Router();
  *               examId: exam_waec_001
  *               name: WAEC
  *               fullName: West African Examinations Council
- *               slug: waec
  *               description: SSCE past questions
  *               targetClasses: SSS3
  *               subjectsCount: 10
@@ -94,11 +93,11 @@ router.get("/get-single/:id", getSingleExam);
  *       200:
  *         description: Exam updated successfully
  */
-router.patch("/update/:id", updateExam);
+router.put("/update/:id", updateExam);
 
 /**
  * @swagger
- * /api/exams/delete/{id}:  
+ * /api/exams/delete/{id}:
  *   delete:
  *     summary: Delete an exam
  *     tags: [Exams]

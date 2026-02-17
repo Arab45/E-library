@@ -33,7 +33,6 @@ const router = express.Router();
  *             examBody:
  *               name: JAMB
  *               fullName: Joint Admissions and Matriculation Board
- *               slug: jamb
  *             papersCount: 3
  *             yearsAvailable: 2023 - 2025 papers available
  *             isComingSoon: false
@@ -90,7 +89,7 @@ router.get("/get-single/:id", getSingleSubject);
  *       200:
  *         description: Subject updated successfully
  */
-router.patch("/update/:id", updateSubject);
+router.put("/update/:id", updateSubject);
 
 /**
  * @swagger
