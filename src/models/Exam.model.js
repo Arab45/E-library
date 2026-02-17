@@ -17,7 +17,6 @@ const examSchema = new mongoose.Schema(
 
     slug: {
       type: String,
-      required: true,
       unique: true,
       lowercase: true,
       trim: true,
