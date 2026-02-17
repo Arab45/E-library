@@ -14,7 +14,7 @@ const app = express();
 
 const corsOptions = {
   credentials: true,
-  origin: ["http://localhost:3000/", "https://oyo-elibrary.vercel.app/"], 
+  origin: ["http://localhost:3000", "https://oyo-elibrary.vercel.app"], 
 };
 
 app.use(cors(corsOptions));

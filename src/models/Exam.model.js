@@ -2,13 +2,6 @@ import mongoose from "mongoose";
 
 const examSchema = new mongoose.Schema(
   {
-    examId: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
-
     name: {
       type: String,
       required: true,
