@@ -28,10 +28,10 @@ const router = express.Router();
  *         application/json:
  *           example:
  *             name: Use of English
- *             slug: use-of-english
  *             examBodyId: 65fd800aa21e9b1c
  *             examBody:
  *               name: JAMB
+ *               slug: jamb
  *               fullName: Joint Admissions and Matriculation Board
  *             papersCount: 3
  *             yearsAvailable: 2023 - 2025 papers available

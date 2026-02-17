@@ -29,7 +29,6 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             example:
- *               examId: exam_waec_001
  *               name: WAEC
  *               fullName: West African Examinations Council
  *               description: SSCE past questions
@@ -80,7 +79,7 @@ router.get("/get-single/:id", getSingleExam);
 /**
  * @swagger
  * /api/exams/update/{id}:
- *   patch:
+ *   put:
  *     summary: Update an exam
  *     tags: [Exams]
  *     parameters:

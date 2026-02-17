@@ -74,7 +74,7 @@ router.get("/get-single/:id", getSinglePaper);
 /**
  * @swagger
  * /api/papers/update/{id}:
- *   patch:
+ *   put:
  *     summary: Update a paper
  *     tags: [Papers]
  *     parameters:
