@@ -10,11 +10,13 @@ import paperRoutes from "./src/routes/paper.routes.js ";
 
 dotenv.config();
 
-const app = express(); 
+const app = express();
 
 const corsOptions = {
   credentials: true,
-  origin: ["http://localhost:3000", "https://oyo-elibrary.vercel.app"], 
+  origin: ["http://localhost:3000", "https://oyo-elibrary.vercel.app"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
