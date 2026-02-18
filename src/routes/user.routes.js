@@ -94,7 +94,7 @@ router.post(
 
 /**
  * @swagger
- * /api/users/auth/signIn:
+ * /api/users/signIn:
  *   post:
  *     summary: Login user
  *     tags: [Auth & Users]
@@ -120,7 +120,7 @@ router.post('/signIn', loginProcess, loginAttempt);
 
 /**
  * @swagger
- * /api/users/auth/verifyLogin:
+ * /api/users/verifyLogin:
  *   get:
  *     summary: Verify logged-in user session and send verification email
  *     tags: [Auth & Users]
@@ -133,7 +133,7 @@ router.get('/verifyLogin', verifyLoginUserToken, userSessionEmail);
 
 /**
  * @swagger
- * /api/users/auth/logout:
+ * /api/users/logout:
  *   get:
  *     summary: Logout current user
  *     tags: [Auth & Users]
@@ -146,7 +146,7 @@ router.get('/logout', logOut);
 
 /**
  * @swagger
- * /api/users/auth/forgetPassword:
+ * /api/users/forgetPassword:
  *   post:
  *     summary: Request password reset email
  *     tags: [Auth & Users]
@@ -169,7 +169,7 @@ router.post('/forgetPassword', forgetPasswordToken, userResetPasswordEmail);
 
 /**
  * @swagger
- * /api/users/auth/reset-password/{token}:
+ * /api/users/reset-password/{token}:
  *   get:
  *     summary: Reset user password
  *     tags: [Auth & Users]
