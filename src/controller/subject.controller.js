@@ -79,3 +79,33 @@ export const deleteSubject = async (req, res) => {
     return sendError(res, error.message, 500);
   }
 };
+
+
+export const getSubjectBySlug = async (req, res) => {
+  try {
+    const { slug } = req.query;
+
+    // validate query
+    if (!slug) {
+      return sendError(res, "Slug query is required", 400);
+    }
+
+    const subject = await Subject.findOne({
+      slug,
+      isActive: true, // optional filter
+    }).lean();
+
+    if (!subject) {
+      return sendError(res, "Subject not found", 404);
+    }
+
+    return sendSuccess(
+      res,
+      "Subject fetched successfully",
+      subject
+    );
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+};
+

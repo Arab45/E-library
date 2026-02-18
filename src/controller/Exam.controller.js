@@ -77,3 +77,28 @@ export const deleteExam = async (req, res) => {
     return sendError(res, error.message, 500);
   }
 };
+
+
+export const getExamBySlug = async (req, res) => {
+  try {
+    const { slug } = req.query;
+
+    // validate query
+    if (!slug) {
+      return sendError(res, "Slug query is required", 400);
+    }
+
+    const exam = await Exam.findOne({
+      slug,
+      isActive: true, // optional but recommended
+    }).lean();
+
+    if (!exam) {
+      return sendError(res, "Exam not found", 404);
+    }
+
+    return sendSuccess(res, "Exam fetched successfully", exam);
+  } catch (error) {
+    return sendError(res, error.message, 500);
+  }
+};

@@ -112,4 +112,24 @@ router.put("/update/:id", updateExam);
  */
 router.delete("/delete/:id", deleteExam);
 
+/**
+ * @swagger
+ * /api/exams/get-by-slug:
+ *   get:
+ *     summary: Get exam by slug
+ *     tags: [Exams]
+ *     parameters:
+ *       - in: query
+ *         name: slug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: jamb
+ *     responses:
+ *       200:
+ *         description: Exam fetched successfully
+ */
+router.get("/get-by-slug", getExamBySlug);
+
+
 export default router;

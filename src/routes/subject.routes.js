@@ -109,4 +109,24 @@ router.put("/update/:id", updateSubject);
  */
 router.delete("/delete/:id", deleteSubject);
 
+/**
+ * @swagger
+ * /api/subjects/get-by-slug:
+ *   get:
+ *     summary: Get subject by slug
+ *     tags: [Subjects]
+ *     parameters:
+ *       - in: query
+ *         name: slug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: use-of-english
+ *     responses:
+ *       200:
+ *         description: Subject fetched successfully
+ */
+router.get("/get-by-slug", getSubjectBySlug);
+
+
 export default router;
