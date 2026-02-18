@@ -5,6 +5,7 @@ import {
   getSingleSubject,
   updateSubject,
   deleteSubject,
+  getSubjectBySlug,
 } from "../controller/subject.controller.js";
 
 const router = express.Router();

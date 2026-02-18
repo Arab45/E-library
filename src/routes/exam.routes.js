@@ -5,6 +5,7 @@ import {
   getSingleExam,
   updateExam,
   deleteExam,
+  getExamBySlug,
 } from "../controller/Exam.controller.js";
 
 const router = express.Router();

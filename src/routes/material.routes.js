@@ -29,25 +29,70 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               title: Algebra Basics
- *               description: Introduction to algebra concepts
- *               category: textbook
- *               subjectId: 65f1a2b3c4d5e6f789012345
- *               classLevelId: 65f1a2b3c4d5e6f789012346
+ *             required:
+ *               - title
+ *               - category
+ *               - subjectId
+ *               - classLevelId
+ *               - file
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: Algebra Basics
+ *               description:
+ *                 type: string
+ *                 example: Introduction to algebra concepts
+ *               category:
+ *                 type: string
+ *                 enum: [textbook, past-question, note, video]
+ *                 example: textbook
+ *               subjectId:
+ *                 type: string
+ *                 example: 65f1a2b3c4d5e6f789012345
+ *               classLevelId:
+ *                 type: string
+ *                 example: 65f1a2b3c4d5e6f789012346
  *               file:
- *                 url: https://example.com/material.pdf
- *               term: first
- *               year: 2025
- *               author: John Doe
- *               version: 1.0
- *               isFeatured: false
- *               isActive: true
+ *                 type: object
+ *                 properties:
+ *                   url:
+ *                     type: string
+ *                     example: https://example.com/material.pdf
+ *               term:
+ *                 type: string
+ *                 enum: [first, second, third, null]
+ *                 example: first
+ *               year:
+ *                 type: number
+ *                 example: 2025
+ *               author:
+ *                 type: string
+ *                 example: John Doe
+ *               version:
+ *                 type: string
+ *                 example: 1.0
+ *               downloadCount:
+ *                 type: number
+ *                 example: 0
+ *               viewCount:
+ *                 type: number
+ *                 example: 0
+ *               isFeatured:
+ *                 type: boolean
+ *                 example: false
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *               addedDate:
+ *                 type: string
+ *                 format: date-time
+ *                 example: 2026-02-18T00:00:00Z
  *     responses:
  *       200:
  *         description: Material created successfully
  */
 router.post("/", createMaterial);
+
 
 
 /**
