@@ -12,16 +12,28 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: AcademicSubject
- *   description: Academic subjects
+ *   name: Academic Subjects
+ *   description: Academic subject management APIs
  */
 
 /**
  * @swagger
  * /api/academic-subjects:
  *   post:
- *     summary: Create academic subject
- *     tags: [AcademicSubject]
+ *     summary: Create a new academic subject
+ *     tags: [Academic Subjects]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             example:
+ *               name: Mathematics
+ *               code: MTH101
+ *               description: Core mathematics subject
+ *               classLevelId: 65f1a2b3c4d5e6f789012345
+ *               isActive: true
  *     responses:
  *       200:
  *         description: Academic subject created successfully
@@ -30,22 +42,22 @@ router.post("/", createAcademicSubject);
 
 /**
  * @swagger
- * /api/academic-subjects/getAll:
+ * /api/academic-subjects/get-allSubjects:
  *   get:
  *     summary: Get all academic subjects
- *     tags: [AcademicSubject]
+ *     tags: [Academic Subjects]
  *     responses:
  *       200:
- *         description: Fetch all academic subjects successfully
+ *         description: List of academic subjects
  */
-router.get("/getAll", getAllAcademicSubjects);
+router.get("/get-allSubjects", getAllAcademicSubjects);
 
 /**
  * @swagger
- * /api/academic-subjects/getSingle/{id}:
+ * /api/academic-subjects/get-single/{id}:
  *   get:
  *     summary: Get single academic subject
- *     tags: [AcademicSubject]
+ *     tags: [Academic Subjects]
  *     parameters:
  *       - in: path
  *         name: id
@@ -55,15 +67,17 @@ router.get("/getAll", getAllAcademicSubjects);
  *     responses:
  *       200:
  *         description: Academic subject fetched successfully
+ *       404:
+ *         description: Subject not found
  */
-router.get("/getSingle/:id", getSingleAcademicSubject);
+router.get("/get-single/:id", getSingleAcademicSubject);
 
 /**
  * @swagger
  * /api/academic-subjects/update/{id}:
  *   put:
- *     summary: Update academic subject
- *     tags: [AcademicSubject]
+ *     summary: Update an academic subject
+ *     tags: [Academic Subjects]
  *     parameters:
  *       - in: path
  *         name: id
@@ -80,8 +94,8 @@ router.put("/update/:id", updateAcademicSubject);
  * @swagger
  * /api/academic-subjects/delete/{id}:
  *   delete:
- *     summary: Delete academic subject
- *     tags: [AcademicSubject]
+ *     summary: Delete an academic subject
+ *     tags: [Academic Subjects]
  *     parameters:
  *       - in: path
  *         name: id
@@ -93,5 +107,26 @@ router.put("/update/:id", updateAcademicSubject);
  *         description: Academic subject deleted successfully
  */
 router.delete("/delete/:id", deleteAcademicSubject);
+
+/**
+ * @swagger
+ * /api/academic-subjects/get-single:
+ *   get:
+ *     summary: Get single academic subject by slug
+ *     tags: [Academic Subjects]
+ *     parameters:
+ *       - in: query
+ *         name: slug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Academic subject slug
+ *         example: mathematics
+ *     responses:
+ *       200:
+ *         description: Academic subject fetched successfully
+ */
+router.get("/get-bySlug", getSingleAcademicSubjectBySlug);
+
 
 export default router;

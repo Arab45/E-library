@@ -12,40 +12,55 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: Material
- *   description: Learning materials
+ *   name: Materials
+ *   description: Learning material management APIs
  */
 
 /**
  * @swagger
  * /api/materials:
  *   post:
- *     summary: Create material
- *     tags: [Material]
+ *     summary: Create a new material
+ *     tags: [Materials]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             example:
+ *               title: Algebra Basics
+ *               description: Introduction to algebra concepts
+ *               subjectId: 65f1a2b3c4d5e6f789012345
+ *               classLevelId: 65f1a2b3c4d5e6f789012346
+ *               fileUrl: https://example.com/material.pdf
+ *               fileType: PDF
+ *               isPremium: false
+ *               isActive: true
  *     responses:
  *       200:
- *         description: Successfully created material
+ *         description: Material created successfully
  */
 router.post("/", createMaterial);
 
 /**
  * @swagger
- * /api/materials/getAllMaterials:
+ * /api/materials/get-allMaterials:
  *   get:
  *     summary: Get all materials
- *     tags: [Material]
+ *     tags: [Materials]
  *     responses:
  *       200:
- *         description: List of materials
+ *         description: List of learning materials
  */
-router.get("/getAllMaterials", getAllMaterials);
+router.get("/get-allMaterials", getAllMaterials);
 
 /**
  * @swagger
- * /api/materials/getSingleMaterial/{id}:
+ * /api/materials/get-single/{id}:
  *   get:
  *     summary: Get single material
- *     tags: [Material]
+ *     tags: [Materials]
  *     parameters:
  *       - in: path
  *         name: id
@@ -55,15 +70,17 @@ router.get("/getAllMaterials", getAllMaterials);
  *     responses:
  *       200:
  *         description: Material fetched successfully
+ *       404:
+ *         description: Material not found
  */
-router.get("/getSingleMaterial/:id", getSingleMaterial);
+router.get("/get-single/:id", getSingleMaterial);
 
 /**
  * @swagger
  * /api/materials/update/{id}:
  *   put:
- *     summary: Update material
- *     tags: [Material]
+ *     summary: Update a material
+ *     tags: [Materials]
  *     parameters:
  *       - in: path
  *         name: id
@@ -80,8 +97,8 @@ router.put("/update/:id", updateMaterial);
  * @swagger
  * /api/materials/delete/{id}:
  *   delete:
- *     summary: Delete material
- *     tags: [Material]
+ *     summary: Delete a material
+ *     tags: [Materials]
  *     parameters:
  *       - in: path
  *         name: id

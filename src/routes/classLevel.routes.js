@@ -12,22 +12,31 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: ClassLevel
- *   description: Class level management
+ *   name: Class Levels
+ *   description: Class level management APIs
  */
 
 /**
  * @swagger
  * /api/class-levels:
  *   post:
- *     summary: Create class level
- *     tags: [ClassLevel]
+ *     summary: Create a new class level
+ *     tags: [Class Levels]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ClassLevel'
+ *             type: object
+ *             example:
+ *               code: JSS1
+ *               name: Junior Secondary School 1
+ *               level: junior
+ *               year: 1
+ *               subjectsCount: 8
+ *               materialsCount: 50
+ *               color: red
+ *               isActive: true
  *     responses:
  *       200:
  *         description: Class level created successfully
@@ -36,22 +45,22 @@ router.post("/", createClassLevel);
 
 /**
  * @swagger
- * /api/class-levels/getAllClassLevels:
+ * /api/class-levels/get-allClassLevels:
  *   get:
  *     summary: Get all class levels
- *     tags: [ClassLevel]
+ *     tags: [Class Levels]
  *     responses:
  *       200:
  *         description: List of class levels
  */
-router.get("/getAllClassLevels", getAllClassLevels);
+router.get("/get-allClassLevels", getAllClassLevels);
 
 /**
  * @swagger
- * /api/class-levels/getSingleClassLevel/{id}:
+ * /api/class-levels/get-single/{id}:
  *   get:
  *     summary: Get single class level
- *     tags: [ClassLevel]
+ *     tags: [Class Levels]
  *     parameters:
  *       - in: path
  *         name: id
@@ -61,15 +70,17 @@ router.get("/getAllClassLevels", getAllClassLevels);
  *     responses:
  *       200:
  *         description: Class level fetched successfully
+ *       404:
+ *         description: Class level not found
  */
-router.get("/getSingleClassLevel/:id", getSingleClassLevel);
+router.get("/get-single/:id", getSingleClassLevel);
 
 /**
  * @swagger
  * /api/class-levels/update/{id}:
  *   put:
- *     summary: Update class level
- *     tags: [ClassLevel]
+ *     summary: Update a class level
+ *     tags: [Class Levels]
  *     parameters:
  *       - in: path
  *         name: id
@@ -86,8 +97,8 @@ router.put("/update/:id", updateClassLevel);
  * @swagger
  * /api/class-levels/delete/{id}:
  *   delete:
- *     summary: Delete class level
- *     tags: [ClassLevel]
+ *     summary: Delete a class level
+ *     tags: [Class Levels]
  *     parameters:
  *       - in: path
  *         name: id

@@ -55,3 +55,23 @@ export const deleteAcademicSubject = async (req, res) => {
     return sendError(res, err.message);
   }
 };
+
+export const getSingleAcademicSubjectBySlug = async (req, res) => {
+  try {
+    const { slug } = req.query;
+
+    if (!slug) {
+      return sendError(res, "Slug is required", 400);
+    }
+
+    const data = await AcademicSubject.findOne({ slug })
+      .populate("classLevelId", "name code");
+
+    if (!data) return sendError(res, "Not found", 404);
+
+    return sendSuccess(res, "Subject fetched", data);
+  } catch (err) {
+    return sendError(res, err.message);
+  }
+};
+
