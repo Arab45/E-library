@@ -119,7 +119,7 @@ router.delete("/delete/:id", deleteAcademicSubject);
 
 /**
  * @swagger
- * /api/academic-subjects/get-single:
+ * /api/academic-subjects/get-bySlug:
  *   get:
  *     summary: Get single academic subject by slug
  *     tags: [Academic Subjects]
