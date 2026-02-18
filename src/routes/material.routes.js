@@ -111,4 +111,24 @@ router.put("/update/:id", updateMaterial);
  */
 router.delete("/delete/:id", deleteMaterial);
 
+/**
+ * @swagger
+ * /api/materials/get-bySlug:
+ *   get:
+ *     summary: Get single material by slug
+ *     tags: [Materials]
+ *     parameters:
+ *       - in: query
+ *         name: slug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Material slug
+ *         example: algebra-basics
+ *     responses:
+ *       200:
+ *         description: Material fetched successfully
+ */
+router.get("/get-bySlug", getSingleMaterialBySlug);
+
 export default router;

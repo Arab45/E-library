@@ -56,3 +56,24 @@ export const deleteMaterial = async (req, res) => {
     return sendError(res, err.message);
   }
 };
+
+export const getSingleMaterialBySlug = async (req, res) => {
+  try {
+    const { slug } = req.query;
+
+    if (!slug) {
+      return sendError(res, "Slug is required", 400);
+    }
+
+    const data = await Material.findOne({ slug })
+      .populate("subjectId", "name")
+      .populate("classLevelId", "name code");
+
+    if (!data) return sendError(res, "Not found", 404);
+
+    return sendSuccess(res, "Material fetched", data);
+  } catch (err) {
+    return sendError(res, err.message);
+  }
+};
+

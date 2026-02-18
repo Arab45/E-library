@@ -4,6 +4,7 @@ import {
   deleteAcademicSubject,
   getAllAcademicSubjects,
   getSingleAcademicSubject,
+  getSingleAcademicSubjectBySlug,
   updateAcademicSubject,
 } from "../controller/academicSubject.controller.js";
 
