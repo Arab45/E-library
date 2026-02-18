@@ -67,7 +67,7 @@ const router = express.Router();
  *             properties:
  *              fullName:
  *                type: string
- *               example: John Doe
+ *                example: John Doe
  *               username:
  *                 type: string
  *                 example: arab45
