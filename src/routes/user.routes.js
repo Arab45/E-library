@@ -49,7 +49,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/users/auth/signUp:
+ * /api/users/signUp:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth & Users]
