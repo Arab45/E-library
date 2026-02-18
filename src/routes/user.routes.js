@@ -65,9 +65,9 @@ const router = express.Router();
  *               - email
  *               - password
  *             properties:
- *              fullName:
- *                type: string
- *                example: John Doe
+ *               fullName:
+ *                 type: string
+ *                 example: John Doe
  *               username:
  *                 type: string
  *                 example: arab45
@@ -81,7 +81,15 @@ const router = express.Router();
  *       200:
  *         description: User registered successfully
  */
-router.post('/signUp', validateSignUp, validation, userExistence, signUp, sendUserEmail);
+router.post(
+  "/signUp",
+  validateSignUp,
+  validation,
+  userExistence,
+  signUp,
+  sendUserEmail
+);
+
 
 
 /**
