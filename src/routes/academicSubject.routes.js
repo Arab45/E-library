@@ -29,17 +29,25 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - name
+ *               - classLevelId
+ *               - classLevel
  *             example:
  *               name: Mathematics
- *               code: MTH101
  *               description: Core mathematics subject
  *               classLevelId: 65f1a2b3c4d5e6f789012345
+ *               classLevel:
+ *                 code: JSS1
+ *                 name: Junior Secondary School 1
+ *                 slug: jss1
  *               isActive: true
  *     responses:
  *       200:
  *         description: Academic subject created successfully
  */
 router.post("/", createAcademicSubject);
+
 
 /**
  * @swagger

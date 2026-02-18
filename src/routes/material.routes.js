@@ -32,17 +32,23 @@ const router = express.Router();
  *             example:
  *               title: Algebra Basics
  *               description: Introduction to algebra concepts
+ *               category: textbook
  *               subjectId: 65f1a2b3c4d5e6f789012345
  *               classLevelId: 65f1a2b3c4d5e6f789012346
- *               fileUrl: https://example.com/material.pdf
- *               fileType: PDF
- *               isPremium: false
+ *               file:
+ *                 url: https://example.com/material.pdf
+ *               term: first
+ *               year: 2025
+ *               author: John Doe
+ *               version: 1.0
+ *               isFeatured: false
  *               isActive: true
  *     responses:
  *       200:
  *         description: Material created successfully
  */
 router.post("/", createMaterial);
+
 
 /**
  * @swagger
