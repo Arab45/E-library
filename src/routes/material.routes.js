@@ -4,6 +4,7 @@ import {
   deleteMaterial,
   getAllMaterials,
   getSingleMaterial,
+  getSingleMaterialBySlug,
   updateMaterial,
 } from "../controller/material.controller.js";
 
