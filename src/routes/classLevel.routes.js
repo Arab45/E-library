@@ -4,6 +4,7 @@ import {
   deleteClassLevel,
   getAllClassLevels,
   getSingleClassLevel,
+  getClassLevelBySlug,
   updateClassLevel,
 } from "../controller/classLevel.controller.js";
 
@@ -28,15 +29,37 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
- *             example:
- *               code: JSS1
- *               name: Junior Secondary School 1
- *               level: junior
- *               year: 1
- *               subjectsCount: 8
- *               materialsCount: 50
- *               color: red
- *               isActive: true
+ *             required:
+ *               - code
+ *               - name
+ *               - level
+ *               - year
+ *             properties:
+ *               code:
+ *                 type: string
+ *                 example: JSS1
+ *               name:
+ *                 type: string
+ *                 example: Junior Secondary School 1
+ *               level:
+ *                 type: string
+ *                 enum: [junior, senior]
+ *                 example: junior
+ *               year:
+ *                 type: number
+ *                 example: 1
+ *               subjectsCount:
+ *                 type: number
+ *                 example: 8
+ *               materialsCount:
+ *                 type: number
+ *                 example: 50
+ *               color:
+ *                 type: string
+ *                 example: red
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
  *     responses:
  *       200:
  *         description: Class level created successfully
@@ -59,7 +82,7 @@ router.get("/get-allClassLevels", getAllClassLevels);
  * @swagger
  * /api/class-levels/get-single/{id}:
  *   get:
- *     summary: Get single class level
+ *     summary: Get single class level by ID
  *     tags: [Class Levels]
  *     parameters:
  *       - in: path
@@ -67,6 +90,7 @@ router.get("/get-allClassLevels", getAllClassLevels);
  *         required: true
  *         schema:
  *           type: string
+ *         description: Class level ID
  *     responses:
  *       200:
  *         description: Class level fetched successfully
@@ -74,6 +98,64 @@ router.get("/get-allClassLevels", getAllClassLevels);
  *         description: Class level not found
  */
 router.get("/get-single/:id", getSingleClassLevel);
+
+/**
+ * @swagger
+ * /api/class-levels/get-by-slug:
+ *   get:
+ *     summary: Get class level by slug
+ *     tags: [Class Levels]
+ *     parameters:
+ *       - in: query
+ *         name: slug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Class level slug
+ *         example: jss1
+ *     responses:
+ *       200:
+ *         description: Class level fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Class level fetched successfully
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                     code:
+ *                       type: string
+ *                     name:
+ *                       type: string
+ *                     slug:
+ *                       type: string
+ *                     level:
+ *                       type: string
+ *                     year:
+ *                       type: number
+ *                     subjectsCount:
+ *                       type: number
+ *                     materialsCount:
+ *                       type: number
+ *                     color:
+ *                       type: string
+ *                     isActive:
+ *                       type: boolean
+ *       400:
+ *         description: Slug query is required
+ *       404:
+ *         description: Class level not found
+ */
+router.get("/get-by-slug", getClassLevelBySlug);
 
 /**
  * @swagger
@@ -87,9 +169,35 @@ router.get("/get-single/:id", getSingleClassLevel);
  *         required: true
  *         schema:
  *           type: string
+ *         description: Class level ID
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               code:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               level:
+ *                 type: string
+ *                 enum: [junior, senior]
+ *               year:
+ *                 type: number
+ *               subjectsCount:
+ *                 type: number
+ *               materialsCount:
+ *                 type: number
+ *               color:
+ *                 type: string
+ *               isActive:
+ *                 type: boolean
  *     responses:
  *       200:
  *         description: Class level updated successfully
+ *       404:
+ *         description: Class level not found
  */
 router.put("/update/:id", updateClassLevel);
 
@@ -105,9 +213,12 @@ router.put("/update/:id", updateClassLevel);
  *         required: true
  *         schema:
  *           type: string
+ *         description: Class level ID
  *     responses:
  *       200:
  *         description: Class level deleted successfully
+ *       404:
+ *         description: Class level not found
  */
 router.delete("/delete/:id", deleteClassLevel);
 
