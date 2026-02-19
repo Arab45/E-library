@@ -45,6 +45,7 @@ const router = express.Router();
  *               - username
  *               - classLevel
  *               - schoolName
+ *               - role
  *               - email
  *               - password
  *             properties:
@@ -54,6 +55,10 @@ const router = express.Router();
  *               username:
  *                 type: string
  *                 example: arab45
+ *               role:
+ *                 type: string
+ *                 enum: ["admin", "user"]
+ *                 example: "admin"
  *               classLevel:
  *                 type: string
  *                 example: SS1
