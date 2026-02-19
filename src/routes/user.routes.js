@@ -54,9 +54,9 @@ const router = express.Router();
  *               username:
  *                 type: string
  *                 example: arab45
- *              classLevel:
- *                type: string
- *                example: SS1
+ *               classLevel:
+ *                 type: string
+ *                 example: SS1
  *               schoolName:
  *                 type: string
  *                 example: Oyo State College of Education
