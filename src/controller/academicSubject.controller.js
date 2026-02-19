@@ -13,7 +13,7 @@ export const createAcademicSubject = async (req, res) => {
 export const getAllAcademicSubjects = async (req, res) => {
   try {
     const data = await AcademicSubject.find()
-      .populate("classLevelId", "name code");
+      .populate("classLevelId", "name code slug");
 
     return sendSuccess(res, "Subjects fetched", data);
   } catch (err) {
@@ -23,7 +23,8 @@ export const getAllAcademicSubjects = async (req, res) => {
 
 export const getSingleAcademicSubject = async (req, res) => {
   try {
-    const data = await AcademicSubject.findById(req.params.id);
+    const data = await AcademicSubject.findById(req.params.id)
+      .populate("classLevelId", "name code slug");
 
     if (!data) return sendError(res, "Not found", 404);
 
@@ -39,7 +40,7 @@ export const updateAcademicSubject = async (req, res) => {
       req.params.id,
       req.body,
       { new: true }
-    );
+    ).populate("classLevelId", "name code slug");
 
     return sendSuccess(res, "Updated successfully", data);
   } catch (err) {
@@ -65,7 +66,7 @@ export const getSingleAcademicSubjectBySlug = async (req, res) => {
     }
 
     const data = await AcademicSubject.findOne({ slug })
-      .populate("classLevelId", "name code");
+      .populate("classLevelId", "name code slug");
 
     if (!data) return sendError(res, "Not found", 404);
 
@@ -74,4 +75,3 @@ export const getSingleAcademicSubjectBySlug = async (req, res) => {
     return sendError(res, err.message);
   }
 };
-

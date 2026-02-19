@@ -23,12 +23,6 @@ const subjectSchema = new mongoose.Schema(
       index: true,
     },
 
-    examBody: {
-      name: { type: String, required: true },
-      fullName: { type: String, required: true },
-      slug: { type: String, required: true },
-    },
-
     papersCount: {
       type: Number,
       default: 0,
@@ -51,9 +45,8 @@ const subjectSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
-
 
 subjectSchema.pre("validate", async function () {
   // only generate when creating new document
@@ -61,7 +54,5 @@ subjectSchema.pre("validate", async function () {
     this.slug = slug(this.name, { lower: true });
   }
 });
-
-
 
 export const Subject = mongoose.model("Subject", subjectSchema);

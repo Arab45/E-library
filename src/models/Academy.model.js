@@ -28,12 +28,6 @@ const academicSubjectSchema = new mongoose.Schema(
       index: true,
     },
 
-    classLevel: {
-      code: { type: String, required: true },
-      name: { type: String, required: true },
-      slug: { type: String, required: true },
-    },
-
     materialsCount: {
       type: Number,
       default: 0,
@@ -49,7 +43,6 @@ const academicSubjectSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 
 academicSubjectSchema.pre("validate", function () {
   if (this.isNew && !this.slug) {
