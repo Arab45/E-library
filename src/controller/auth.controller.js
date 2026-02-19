@@ -5,17 +5,26 @@ import User from "../models/User.model.js";
 
 export const loginProcess = async (req, res, next) => {
     const { logInID, password } = req.body;
-    req.body.logInID = req.body.logInID.toLowerCase();
+    const normalizedLogInID = logInID.toLowerCase();
 
     try {
-        const checkuserExist = await User.findOne({email: logInID})
-        if(!checkuserExist){
-            return sendError(res, 'email does not exist, signup instead');
-        };
-        req.body = { logInID, checkuserExist, password }
-        next()
+        // Check if the login ID exists as either email or username
+        const checkuserExist = await User.findOne({
+            $or: [
+                { email: normalizedLogInID },
+                { username: normalizedLogInID }
+            ]
+        });
+        
+        if (!checkuserExist) {
+            return sendError(res, 'User does not exist with this email or username, signup instead');
+        }
+        
+        // Pass the data to the next middleware
+        req.body = { logInID, checkuserExist, password };
+        next();
     } catch (error) {
-        return sendError(res, 'Something went wronggg', 500);
+        return sendError(res, 'Something went wrong', 500);
     }
 };
 
@@ -34,7 +43,7 @@ export const loginAttempt = async (req, res, next) => {
         process.env.JWT_USER_SECRET, {expiresIn: '1d'});
 
         //Creating both server/browser cookies
-        res.cookie(String(checkuserExist._id), loginToken, {
+       res.cookie(String(checkuserExist._id), loginToken, {
             path: '/',
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
             httpOnly: true,
@@ -42,7 +51,7 @@ export const loginAttempt = async (req, res, next) => {
         });
 
 
-        return sendSuccess(res, "successfully login", checkuserExist);
+        return sendSuccess(res, "successfully login", loginToken);
     } catch (error) {
         return sendError(res, 'Something went wrong', 500); 
     }

@@ -1,48 +1,29 @@
-// import express from "express"
-// import {  signUp, fetchSingleUser, fetchAllUser } from "../controller/user.controller.js";
-// import { 
-//     loginProcess, 
-//     loginAttempt, 
-//     verifyLoginUserToken, 
-//     logOut,
-//     forgetPasswordToken,
-//     resetPassword } from "../controller/auth.controller.js";
-// import { validation, validateSignUp } from "../middleware/validator.middleware.js";
-// import userExistence  from "../middleware/user.middleware.js";
-// import { sendUserEmail, userSessionEmail, userResetPasswordEmail, userEmailPasswordSuccess } from "../services/userEmailTemp.service.js";
-
-// const router = express.Router();
-
-// router.post('/signUp', validateSignUp, validation, userExistence, signUp, sendUserEmail);
-// router.post('/signIn', loginProcess, loginAttempt); 
-// router.get('/verifyLogin', verifyLoginUserToken, userSessionEmail );
-// router.get('/logout', logOut);
-// router.post('/forgetPassword', forgetPasswordToken, userResetPasswordEmail);
-// router.get('/reset-password/:token', resetPassword, userEmailPasswordSuccess);
-
-
-// export default router  
-
-
 import express from "express";
-import { signUp, fetchSingleUser, fetchAllUser } from "../controller/user.controller.js";
+import {
+  signUp,
+  fetchSingleUser,
+  fetchAllUser,
+} from "../controller/user.controller.js";
 import {
   loginProcess,
   loginAttempt,
   verifyLoginUserToken,
   logOut,
   forgetPasswordToken,
-  resetPassword
+  resetPassword,
 } from "../controller/auth.controller.js";
 
-import { validation, validateSignUp } from "../middleware/validator.middleware.js";
+import {
+  validation,
+  validateSignUp,
+} from "../middleware/validator.middleware.js";
 import userExistence from "../middleware/user.middleware.js";
 
 import {
   sendUserEmail,
   userSessionEmail,
   userResetPasswordEmail,
-  userEmailPasswordSuccess
+  userEmailPasswordSuccess,
 } from "../services/userEmailTemp.service.js";
 
 const router = express.Router();
@@ -62,6 +43,8 @@ const router = express.Router();
  *             required:
  *               - fullName
  *               - username
+ *               - classLevel
+ *               - schoolName
  *               - email
  *               - password
  *             properties:
@@ -71,6 +54,12 @@ const router = express.Router();
  *               username:
  *                 type: string
  *                 example: arab45
+ *              classLevel:
+ *                type: string
+ *                example: SS1
+ *               schoolName:
+ *                 type: string
+ *                 example: Oyo State College of Education
  *               email:
  *                 type: string
  *                 example: user@gmail.com
@@ -87,10 +76,8 @@ router.post(
   validation,
   userExistence,
   signUp,
-  sendUserEmail
+  sendUserEmail,
 );
-
-
 
 /**
  * @swagger
@@ -115,8 +102,7 @@ router.post(
  *       200:
  *         description: Login successful
  */
-router.post('/signIn', loginProcess, loginAttempt);
-
+router.post("/signIn", loginProcess, loginAttempt);
 
 /**
  * @swagger
@@ -128,8 +114,7 @@ router.post('/signIn', loginProcess, loginAttempt);
  *       200:
  *         description: Session verified
  */
-router.get('/verifyLogin', verifyLoginUserToken, userSessionEmail);
-
+router.get("/verifyLogin", verifyLoginUserToken, userSessionEmail);
 
 /**
  * @swagger
@@ -141,8 +126,7 @@ router.get('/verifyLogin', verifyLoginUserToken, userSessionEmail);
  *       200:
  *         description: Successfully logged out
  */
-router.get('/logout', logOut);
-
+router.get("/logout", logOut);
 
 /**
  * @swagger
@@ -164,8 +148,7 @@ router.get('/logout', logOut);
  *       200:
  *         description: Reset email sent
  */
-router.post('/forgetPassword', forgetPasswordToken, userResetPasswordEmail);
-
+router.post("/forgetPassword", forgetPasswordToken, userResetPasswordEmail);
 
 /**
  * @swagger
@@ -183,6 +166,6 @@ router.post('/forgetPassword', forgetPasswordToken, userResetPasswordEmail);
  *       200:
  *         description: Password reset successful
  */
-router.get('/reset-password/:token', resetPassword, userEmailPasswordSuccess);
+router.get("/reset-password/:token", resetPassword, userEmailPasswordSuccess);
 
 export default router;
